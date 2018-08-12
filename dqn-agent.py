@@ -232,3 +232,14 @@ for i_episode in range(num_episodes):
         if done:
             episode_durations.append(t + 1)
             plot_durations()
+            break
+
+    # Update the target network
+    if i_episode % TARGET_UPDATE == 0:
+        target_net.load_state_dict(policy_net.state_dict())
+
+print('Complete')
+env.render()
+env.close()
+plt.ioff()
+plt.show()
